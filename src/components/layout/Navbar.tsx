@@ -37,18 +37,35 @@ export function Navbar({ theme, onToggleTheme, topOffset }: NavbarProps) {
   const [activeSection, setActiveSection] = useState<string>("");
   const [shareOpen, setShareOpen]         = useState(false);
 
-  // Scroll shadow
+  // Scroll shadow + near-bottom contact activation
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      // Contact is a footer — the page can't scroll past it, so the
+      // IntersectionObserver's top-30%-of-viewport zone never fires for it.
+      // Force it active whenever the user is within 80px of the page bottom.
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 80;
+      if (nearBottom && sectionIds.includes("contact")) {
+        setActiveSection("contact");
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Active section via IntersectionObserver
+  // Active section via IntersectionObserver (all sections except contact)
   useEffect(() => {
     const visible = new Set<string>();
 
     const updateActive = () => {
+      // Don't override if near-bottom scroll handler already set contact
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 80;
+      if (nearBottom && sectionIds.includes("contact")) return;
+
       const ordered = sectionIds.filter((id) => visible.has(id));
       if (ordered.length > 0) setActiveSection(ordered[0]);
     };
@@ -96,7 +113,12 @@ export function Navbar({ theme, onToggleTheme, topOffset }: NavbarProps) {
           className="font-serif text-xl font-light tracking-wide text-foreground hover:text-primary transition-colors"
           data-testid="nav-logo"
         >
-          {config.name.split(" ")[0]}
+          {(() => {
+            const first = config.name.split(" ")[0];
+            return first.length > 8
+              ? config.name.split(" ").map((w) => w[0]).join("").slice(0, 3).toUpperCase()
+              : first;
+          })()}
           <span className="text-primary font-normal">.</span>
         </a>
 
