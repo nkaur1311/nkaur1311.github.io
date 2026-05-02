@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Stats } from "@/components/sections/Stats";
+import { GitHubStats } from "@/components/sections/GitHubStats";
 import { Skills } from "@/components/sections/Skills";
 import { Languages } from "@/components/sections/Languages";
 import { Experience } from "@/components/sections/Experience";
@@ -111,6 +112,7 @@ export function PortfolioPage({ theme, onToggleTheme, topOffset }: PortfolioPage
     <div className="min-h-screen bg-background text-foreground">
       <Navbar theme={theme} onToggleTheme={onToggleTheme} topOffset={topOffset} />
       <Hero />
+      <GitHubStats />
       {config.sections
         .filter((s) => s.show)
         .map(({ id }) => {
