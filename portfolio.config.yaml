@@ -13,6 +13,7 @@
 # ║  Change it to "portfolio" once you have filled in your details.     ║
 # ╚══════════════════════════════════════════════════════════════════════╝
 siteMode: "landing"   # ← CHANGE THIS to "portfolio"
+siteUrl:  "https://yourusername.github.io"  # ← Your GitHub Pages URL (used for RSS & canonical links)
 
 # ── Identity ───────────────────────────────────────────── (required) ──
 name: "Alex Rivera"

@@ -17,7 +17,8 @@ export interface Post {
 
 // ── Vite build-time import ────────────────────────────────────────────────────
 
-const rawFiles = import.meta.glob('/blog/*.md', {
+// Picks up posts from blog/YYYY/MM/slug.md and any other depth
+const rawFiles = import.meta.glob('/blog/**/*.md', {
   query:  '?raw',
   import: 'default',
   eager:  true,

@@ -112,14 +112,17 @@ export function About() {
             )}
           </div>
 
-          {/* Right col — stat cards */}
+          {/* Right col — stat cards (driven by stats: in portfolio.config.yaml) */}
           <div className="grid grid-cols-2 gap-4">
-            {[
-              { label: "Years Experience", value: "5+" },
-              { label: "Projects Shipped", value: "20+" },
-              { label: "Technologies",     value: `${config.skills.reduce((acc, s) => acc + s.items.length, 0)}+` },
-              { label: "Cups of Coffee",   value: "∞" },
-            ].map((stat, i) => (
+            {(config.stats.length > 0
+              ? config.stats.slice(0, 4)
+              : [
+                  { label: "Years Experience", value: 5,  prefix: "",  suffix: "+" },
+                  { label: "Projects Shipped", value: 20, prefix: "",  suffix: "+" },
+                  { label: "Technologies",     value: config.skills.reduce((acc, s) => acc + s.items.length, 0), prefix: "", suffix: "+" },
+                  { label: "Cups of Coffee",   value: "∞" as unknown as number, prefix: "", suffix: "" },
+                ]
+            ).map((stat, i) => (
               <motion.div
                 key={stat.label}
                 variants={fadeUp} custom={i + 1}
@@ -129,7 +132,7 @@ export function About() {
                 data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 <p className="text-4xl font-serif font-light gradient-text mb-2">
-                  {stat.value}
+                  {(stat.prefix ?? "")}{stat.value}{(stat.suffix ?? "")}
                 </p>
                 <p className="text-xs text-muted-foreground tracking-wide">{stat.label}</p>
               </motion.div>
