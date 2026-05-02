@@ -22,11 +22,23 @@ const R = (s) => `\x1b[31m${s}\x1b[0m`;   // red
 const B = (s) => `\x1b[1m${s}\x1b[0m`;    // bold
 const D = (s) => `\x1b[2m${s}\x1b[0m`;    // dim
 
+// ── GitHub Actions helpers ─────────────────────────────────────────────────────
+const IS_CI = !!process.env.GITHUB_ACTIONS;
+const CONFIG_FILE = "portfolio.config.yaml";
+const gha = {
+  group:    (t)       => IS_CI && console.log(`::group::${t}`),
+  endgroup: ()        => IS_CI && console.log("::endgroup::"),
+  error:    (msg, f)  => IS_CI && console.log(`::error file=${CONFIG_FILE},title=${f ?? "Config Error"}::${msg}`),
+  warning:  (msg, f)  => IS_CI && console.log(`::warning file=${CONFIG_FILE},title=${f ?? "Config Warning"}::${msg}`),
+  notice:   (msg)     => IS_CI && console.log(`::notice file=${CONFIG_FILE}::${msg}`),
+};
+
 // ── Load config ───────────────────────────────────────────────────────────────
 let cfg;
 try {
   cfg = yaml.load(readFileSync(join(ROOT, "portfolio.config.yaml"), "utf8"));
 } catch (e) {
+  gha.error(`Could not parse portfolio.config.yaml — ${e.message}`, "YAML Parse Error");
   console.error(R("\n✗ Could not read portfolio.config.yaml\n"));
   console.error(`  ${e.message}\n`);
   process.exit(1);
@@ -42,10 +54,12 @@ function pass(field, value, note = "") {
 }
 function warn(field, message) {
   warnings++;
+  gha.warning(`${field}: ${message}`);
   console.log(`  ${Y("⚠")} ${B(field.padEnd(18))} ${Y(message)}`);
 }
 function fail(field, message) {
   errors++;
+  gha.error(`${field}: ${message}`);
   console.log(`  ${R("✗")} ${B(field.padEnd(18))} ${R(message)}`);
 }
 
@@ -99,6 +113,7 @@ function checkBoolean(field, value) {
 }
 
 // ── Checks ────────────────────────────────────────────────────────────────────
+gha.group("GitVita config validation");
 console.log(`\n${B("GitVita Config Checker")}  ${D("portfolio.config.yaml")}\n`);
 
 // Identity
@@ -181,9 +196,18 @@ console.log(`  ${parts.join("  ")}\n`);
 
 if (errors > 0) {
   console.log(R(`  Fix the ${errors} error${errors !== 1 ? "s" : ""} above before deploying.\n`));
+  gha.endgroup();
+  gha.error(
+    `${errors} config error${errors !== 1 ? "s" : ""} found in portfolio.config.yaml — ` +
+    `fix them and push again. See the "GitVita config validation" log group above for details.`,
+    "Config validation failed"
+  );
   process.exit(1);
 } else if (warnings > 0) {
   console.log(Y(`  Looks good! Address the warnings above to get the most from your portfolio.\n`));
+  gha.endgroup();
+  gha.notice(`Config valid with ${warnings} warning${warnings !== 1 ? "s" : ""}. See details above.`);
 } else {
   console.log(G(`  ✓ Everything looks great — your config is fully set up!\n`));
+  gha.endgroup();
 }

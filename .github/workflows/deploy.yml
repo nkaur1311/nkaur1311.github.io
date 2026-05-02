@@ -31,8 +31,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Validate config
+      - name: Validate portfolio.config.yaml
+        id: validate
         run: node scripts/check-config.mjs
+
+      - name: Config validation failed — help message
+        if: failure() && steps.validate.conclusion == 'failure'
+        run: |
+          echo ""
+          echo "──────────────────────────────────────────────────────────────────"
+          echo "  Deployment blocked: portfolio.config.yaml has errors."
+          echo ""
+          echo "  1. Open portfolio.config.yaml in your repo"
+          echo "  2. Fix the fields marked ✗ in the log above"
+          echo "  3. Commit and push — the deploy will retry automatically"
+          echo ""
+          echo "  Run  pnpm check-config  locally to preview all issues before"
+          echo "  pushing."
+          echo "──────────────────────────────────────────────────────────────────"
+          echo ""
 
       - name: Detect base path
         id: base
