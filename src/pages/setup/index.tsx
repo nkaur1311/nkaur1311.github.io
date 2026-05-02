@@ -659,6 +659,17 @@ function StepPages({ onNext }: { onNext: () => void }) {
             </div>
           </div>
 
+          {/* First build fail notice */}
+          <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20">
+            <p className="text-xs text-amber-700 dark:text-amber-400 font-medium mb-1">⚠️ The first build will fail — that's normal</p>
+            <p className="text-xs text-amber-700/80 dark:text-amber-400/80">
+              When you created the repository, GitHub tried to build it before Pages was configured.
+              That first attempt fails. Once you've enabled Pages above, just make any tiny edit to
+              your <span className="font-mono">portfolio.config.yaml</span> file and save it — that
+              triggers a fresh build which will succeed.
+            </p>
+          </div>
+
           <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
             <p className="text-xs text-primary font-medium mb-1">💡 Don't see the Pages option?</p>
             <p className="text-xs text-muted-foreground">

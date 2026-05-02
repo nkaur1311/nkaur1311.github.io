@@ -4,11 +4,15 @@
 # ║  Run  pnpm check-config  to catch mistakes before deploying.        ║
 # ╚══════════════════════════════════════════════════════════════════════╝
 
-# ── Site mode ──────────────────────────────────────────────────────────
-# "landing" shows the GitVita product page at the root (default for the template).
-# Change to "portfolio" once you have filled in your details — your portfolio
-# will then appear directly at your-name.github.io.
-siteMode: "landing"
+# ╔══════════════════════════════════════════════════════════════════════╗
+# ║  ⚠️  FIRST THING TO CHANGE                                          ║
+# ║                                                                      ║
+# ║  siteMode: "landing"  → shows the GitVita intro page (default)      ║
+# ║  siteMode: "portfolio" → shows YOUR portfolio                        ║
+# ║                                                                      ║
+# ║  Change it to "portfolio" once you have filled in your details.     ║
+# ╚══════════════════════════════════════════════════════════════════════╝
+siteMode: "landing"   # ← CHANGE THIS to "portfolio"
 
 # ── Identity ───────────────────────────────────────────── (required) ──
 name: "Alex Rivera"
@@ -17,7 +21,7 @@ tagline: "I build thoughtful software that scales."
 email: "alex@example.com"
 phone: ""                    # Optional — e.g. "+1 (555) 000-1234". Shown in contact section and resume.
 location: "San Francisco, CA"
-avatarUrl: ""
+avatarUrl: "https://images.dog.ceo/breeds/retriever-golden/n02099601_3004.jpg"  # Demo puppy — replace with your own photo URL
 # How to add a profile photo (free, no extra account needed):
 #   1. Go to your GitHub repo → click "Add file" → "Upload files"
 #   2. Upload your photo (e.g. avatar.jpg) into a folder called "public/"
