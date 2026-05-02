@@ -17,6 +17,7 @@ export type SectionId =
   | "projects"
   | "education"
   | "certifications"
+  | "testimonials"
   | "contact";
 
 export interface SectionEntry {
@@ -33,11 +34,21 @@ export interface Certification {
   tags:          string[];
 }
 
+export interface Testimonial {
+  name:         string;
+  title:        string;
+  company:      string;
+  relationship: string;   // e.g. "Manager", "Colleague", "Client"
+  quote:        string;
+  photoUrl:     string;   // URL to headshot — leave empty for initials
+}
+
 export const config = {
   ...rawConfig,
   colorPreset:    rawConfig.colorPreset  as ColorPreset,
   defaultTheme:   rawConfig.defaultTheme as "system" | "light" | "dark",
   sections:       rawConfig.sections     as SectionEntry[],
   certifications: (rawConfig.certifications ?? []) as Certification[],
+  testimonials:   (rawConfig.testimonials ?? [])   as Testimonial[],
   customColors:   (rawConfig as unknown as { customColors?: PresetPalette }).customColors,
 };

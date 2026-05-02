@@ -15,6 +15,7 @@ const SECTION_LABELS: Record<string, string> = {
   projects:       "Projects",
   education:      "Education",
   certifications: "Certifications",
+  testimonials:   "Testimonials",
   contact:        "Contact",
 };
 

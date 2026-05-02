@@ -32,6 +32,7 @@
     { "id": "projects",       "show": true },
     { "id": "education",      "show": true },
     { "id": "certifications", "show": true },
+    { "id": "testimonials",   "show": true },
     { "id": "contact",        "show": true }
   ],
 
@@ -108,6 +109,33 @@
       "institution": "University of California, Berkeley",
       "degree": "B.S. Computer Science",
       "period": "2014 – 2018"
+    }
+  ],
+
+  "testimonials": [
+    {
+      "name": "Sarah Chen",
+      "title": "Engineering Manager",
+      "company": "Acme Corp",
+      "relationship": "Manager",
+      "quote": "Alex is one of the most thoughtful engineers I've had the pleasure of working with. They consistently delivered high-quality work on time and elevated the entire team's standards.",
+      "photoUrl": ""
+    },
+    {
+      "name": "James Okafor",
+      "title": "Senior Product Designer",
+      "company": "Startup XYZ",
+      "relationship": "Colleague",
+      "quote": "Working with Alex was a joy. They have a rare ability to translate vague product requirements into clean, elegant code. Our collaboration made the product significantly better.",
+      "photoUrl": ""
+    },
+    {
+      "name": "Priya Nair",
+      "title": "CTO",
+      "company": "FinTech Ventures",
+      "relationship": "Client",
+      "quote": "Alex delivered the project ahead of schedule and the code quality was exceptional. They communicated proactively, flagged risks early, and were genuinely invested in our success.",
+      "photoUrl": ""
     }
   ],
 
