@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Copy, CheckCircle, Download, Mail, QrCode, Code2, Link2 } from "lucide-react";
+import { Copy, CheckCircle, Download, Mail, QrCode, Code2, Link2, Hash } from "lucide-react";
 import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { config } from "@/portfolio.config";
 import QRCodeLib from "qrcode";
@@ -10,14 +10,30 @@ interface ShareModalProps {
   onClose: () => void;
 }
 
+const SECTION_LABELS: Record<string, string> = {
+  about:          "About",
+  stats:          "Stats",
+  skills:         "Skills",
+  languages:      "Languages",
+  experience:     "Experience",
+  projects:       "Projects",
+  education:      "Education",
+  certifications: "Certifications",
+  publications:   "Publications",
+  testimonials:   "Testimonials",
+  contact:        "Contact",
+};
+
 function CopyButton({
   text,
   label,
   copiedLabel = "Copied!",
+  compact = false,
 }: {
   text: string;
   label: string;
   copiedLabel?: string;
+  compact?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -30,19 +46,14 @@ function CopyButton({
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border hover:bg-secondary hover:border-primary/40 transition-all"
+      className={`flex items-center gap-1.5 font-medium rounded-lg border border-border hover:bg-secondary hover:border-primary/40 transition-all ${
+        compact ? "px-2.5 py-1.5 text-[11px] justify-between w-full" : "px-3 py-1.5 text-xs"
+      }`}
     >
-      {copied ? (
-        <>
-          <CheckCircle size={12} className="text-green-500" />
-          {copiedLabel}
-        </>
-      ) : (
-        <>
-          <Copy size={12} />
-          {label}
-        </>
-      )}
+      <span className="truncate">{copied ? copiedLabel : label}</span>
+      {copied
+        ? <CheckCircle size={11} className="text-green-500 flex-shrink-0" />
+        : <Copy size={11} className="text-muted-foreground flex-shrink-0" />}
     </button>
   );
 }
@@ -55,6 +66,21 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
     typeof window !== "undefined"
       ? `${window.location.origin}${window.location.pathname.replace(/\/$/, "") || "/"}`
       : "";
+
+  // Base URL for section deep-links: prefer siteUrl when it looks like a real
+  // GitHub Pages domain; fall back to current origin+path otherwise.
+  const sectionBase =
+    config.siteUrl && !config.siteUrl.includes("yourusername")
+      ? config.siteUrl.replace(/\/$/, "")
+      : portfolioUrl;
+
+  // Preserve the #/demo prefix when linking from the demo route
+  const demoPrefix =
+    typeof window !== "undefined" && window.location.hash.startsWith("#/demo")
+      ? "#/demo"
+      : "";
+
+  const visibleSections = config.sections.filter((s) => s.show);
 
   const pageTitle = `${config.name} — ${config.title}`;
 
@@ -105,7 +131,7 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
 
         <div className="space-y-5 pb-2">
 
-          {/* ── Copy link ─────────────────────────────── */}
+          {/* ── Portfolio link ─────────────────────────── */}
           <div>
             <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-2 flex items-center gap-1.5">
               <Link2 size={11} /> Portfolio link
@@ -123,6 +149,41 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
               </button>
             </div>
           </div>
+
+          {/* ── Section deep-links ─────────────────────── */}
+          {visibleSections.length > 0 && (
+            <div>
+              <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-2 flex items-center gap-1.5">
+                <Hash size={11} /> Share a specific section
+              </p>
+              <p className="text-[11px] text-muted-foreground mb-3 leading-relaxed">
+                Send a recruiter directly to the part of your portfolio that matters most.
+              </p>
+              <div className="grid grid-cols-2 gap-1.5">
+                {visibleSections.map((s) => {
+                  const label = SECTION_LABELS[s.id] ?? s.id;
+                  const url   = `${sectionBase}${demoPrefix}#${s.id}`;
+                  return (
+                    <CopyButton
+                      key={s.id}
+                      text={url}
+                      label={label}
+                      copiedLabel="Copied ✓"
+                      compact
+                    />
+                  );
+                })}
+                {config.blog?.enabled && (
+                  <CopyButton
+                    text={`${sectionBase}${demoPrefix.replace("/demo", "")}#/blog`}
+                    label="Blog"
+                    copiedLabel="Copied ✓"
+                    compact
+                  />
+                )}
+              </div>
+            </div>
+          )}
 
           {/* ── Social share ───────────────────────────── */}
           <div>
@@ -162,11 +223,7 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
             </p>
             <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary border border-border">
               {qrDataUrl ? (
-                <img
-                  src={qrDataUrl}
-                  alt="Portfolio QR Code"
-                  className="w-20 h-20 rounded-lg flex-shrink-0"
-                />
+                <img src={qrDataUrl} alt="Portfolio QR Code" className="w-20 h-20 rounded-lg flex-shrink-0" />
               ) : (
                 <div className="w-20 h-20 rounded-lg bg-muted animate-pulse flex-shrink-0" />
               )}

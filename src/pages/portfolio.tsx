@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link2, Check } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
@@ -13,7 +16,6 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 import { config } from "@/portfolio.config";
 import type { SectionId } from "@/portfolio.config";
-import { Link2 } from "lucide-react";
 
 interface PortfolioPageProps {
   theme: string;
@@ -35,6 +37,75 @@ const SECTION_COMPONENTS: Record<SectionId, React.ComponentType> = {
   contact:        Contact,
 };
 
+// ── Section wrapper with hover copy-link button ─────────────────────────────
+
+function SectionWrapper({ id, children }: { id: string; children: React.ReactNode }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    // Use config.siteUrl when set (i.e. real GitHub Pages URL), else fall back
+    // to current origin. In either case append the section anchor directly —
+    // in a real deployed portfolio siteMode="portfolio" there is no #/demo prefix.
+    const base =
+      config.siteUrl && !config.siteUrl.includes("yourusername")
+        ? config.siteUrl.replace(/\/$/, "")
+        : `${window.location.origin}${window.location.pathname.replace(/\/$/, "")}`;
+
+    // Preserve the #/demo prefix when we are currently on the demo route
+    const currentHash   = window.location.hash;
+    const demoPrefix    = currentHash.startsWith("#/demo") ? "#/demo" : "";
+    const url           = `${base}${demoPrefix}#${id}`;
+
+    await navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
+  return (
+    <div className="relative group/sec">
+      {children}
+      {/* Hover copy-link button — hidden on touch screens */}
+      <div className="absolute top-10 right-6 z-10 hidden sm:block opacity-0 group-hover/sec:opacity-100 transition-opacity duration-200 pointer-events-none group-hover/sec:pointer-events-auto">
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-background/90 backdrop-blur border border-border text-[11px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/40 shadow-sm transition-colors"
+          aria-label={`Copy link to ${id} section`}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {copied ? (
+              <motion.span
+                key="check"
+                initial={{ scale: 0.6, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.6, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="flex items-center gap-1.5 text-green-500"
+              >
+                <Check size={11} strokeWidth={2.5} />
+                Copied!
+              </motion.span>
+            ) : (
+              <motion.span
+                key="link"
+                initial={{ scale: 0.6, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.6, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="flex items-center gap-1.5"
+              >
+                <Link2 size={11} />
+                Copy link
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Page ────────────────────────────────────────────────────────────────────
+
 export function PortfolioPage({ theme, onToggleTheme, topOffset }: PortfolioPageProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,7 +115,12 @@ export function PortfolioPage({ theme, onToggleTheme, topOffset }: PortfolioPage
         .filter((s) => s.show)
         .map(({ id }) => {
           const Section = SECTION_COMPONENTS[id];
-          return Section ? <Section key={id} /> : null;
+          if (!Section) return null;
+          return (
+            <SectionWrapper key={id} id={id}>
+              <Section />
+            </SectionWrapper>
+          );
         })}
       {config.showPoweredBy && (
         <footer className="py-5 px-6 border-t border-border text-center">
