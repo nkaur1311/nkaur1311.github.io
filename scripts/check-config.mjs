@@ -184,6 +184,9 @@ else pass("education", `${edu.length} entr${edu.length !== 1 ? "ies" : "y"}`);
 const certs = cfg.certifications || [];
 pass("certifications", `${certs.length} entr${certs.length !== 1 ? "ies" : "y"}`);
 
+const stats = cfg.stats || [];
+pass("stats", `${stats.length} entr${stats.length !== 1 ? "ies" : "y"}`);
+
 const pubs = cfg.publications || [];
 pass("publications", `${pubs.length} entr${pubs.length !== 1 ? "ies" : "y"}`);
 

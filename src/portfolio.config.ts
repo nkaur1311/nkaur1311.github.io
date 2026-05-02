@@ -28,6 +28,7 @@ const rawConfig = rawConfigYaml as unknown as {
   social:         Record<string, string>;
   sections:       { id: string; show: boolean }[];
   about:          string;
+  stats:          { label: string; value: number; prefix?: string; suffix?: string }[];
   languages:      { name: string; level: string }[];
   skills:         { category: string; items: string[] }[];
   experience:     { company: string; role: string; period: string; description: string; highlights?: string[] }[];
@@ -40,6 +41,7 @@ const rawConfig = rawConfigYaml as unknown as {
 
 export type SectionId =
   | "about"
+  | "stats"
   | "skills"
   | "languages"
   | "experience"
@@ -67,6 +69,13 @@ export interface Certification {
   credentialUrl: string;
   badgeUrl:      string;
   tags:          string[];
+}
+
+export interface Stat {
+  label:   string;
+  value:   number;
+  prefix?: string;
+  suffix?: string;
 }
 
 export interface Publication {
@@ -99,6 +108,7 @@ export const config = {
   defaultTheme:   rawConfig.defaultTheme as "system" | "light" | "dark",
   siteMode:       (rawConfig.siteMode ?? "portfolio") as "landing" | "portfolio",
   sections:       rawConfig.sections     as SectionEntry[],
+  stats:          (rawConfig.stats          ?? []) as Stat[],
   languages:      (rawConfig.languages      ?? []) as Language[],
   certifications: (rawConfig.certifications ?? []) as Certification[],
   publications:   (rawConfig.publications   ?? []) as Publication[],
