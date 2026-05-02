@@ -4,6 +4,15 @@ All notable changes are listed here. Each version brings new features you can op
 
 ---
 
+## [1.6.0] — 2026-05-02
+
+### Performance
+- **CSS bundle −47KB** — Font imports now use Latin + Latin-Ext subsets only. Previously all languages (Cyrillic, Vietnamese, Greek, Greek-Ext) were loaded even for English portfolios. This removes ~50 unused `@font-face` declarations and reduces the number of font files in the build from 80+ to 38.
+- **LCP improved** — The hero name and avatar no longer start invisible. Previously both faded in from `opacity: 0`, which pushed the Largest Contentful Paint score out by 600–700ms while the animation played. The elements now paint immediately and slide in from a slight vertical offset — same visual effect, no LCP penalty.
+- **Avatar loads faster** — The avatar image now has `fetchpriority="high"` so the browser queues it immediately alongside the critical CSS and JS, rather than after. If your avatar is hosted externally (e.g. DiceBear), a `<link rel="preconnect">` is now injected into the HTML automatically for its domain so the DNS + TLS handshake starts as early as possible.
+
+---
+
 ## [1.5.0] — 2026-05-02
 
 ### Performance

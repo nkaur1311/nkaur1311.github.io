@@ -139,6 +139,11 @@ function metaAndSchemaPlugin() {
       const sameAs    = Object.values(social).filter(Boolean);
       const ogImage   = avatar || "/opengraph.jpg";
 
+      let avatarOrigin: string | null = null;
+      try {
+        if (avatar.startsWith("http")) avatarOrigin = new URL(avatar).origin;
+      } catch { /* relative or empty avatar URL — no preconnect needed */ }
+
       const schema = {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -160,6 +165,7 @@ function metaAndSchemaPlugin() {
         `<meta name="twitter:title"       content="${pageTitle}">`,
         `<meta name="twitter:description" content="${summary.slice(0, 200).replace(/"/g, "&quot;")}">`,
         `<script type="application/ld+json">${JSON.stringify(schema)}</script>`,
+        ...(avatarOrigin ? [`<link rel="preconnect" href="${avatarOrigin}" crossorigin>`] : []),
         ...(blogOn && siteUrl
           ? [`<link rel="alternate" type="application/rss+xml" title="${name}'s ${blogTitle}" href="${siteUrl}/rss.xml">`]
           : []),

@@ -5,24 +5,30 @@ import App from "./App";
 // cross-origin request to Google Fonts.  Vite inlines the @font-face rules into
 // the CSS bundle and copies the .woff2 files into dist/assets — same origin,
 // proper cache headers, no render-blocking network round trips.
-// We import each weight individually so unused weights are not included.
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+// We import per-weight AND per-subset (latin + latin-ext only) to strip out
+// Cyrillic, Vietnamese, Greek, etc. @font-face declarations that are never used
+// for a portfolio in English — this significantly reduces the CSS bundle size.
+import "@fontsource/inter/latin-300.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-ext-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-ext-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
 
-import "@fontsource/cormorant-garamond/300.css";
-import "@fontsource/cormorant-garamond/300-italic.css";
-import "@fontsource/cormorant-garamond/400.css";
-import "@fontsource/cormorant-garamond/400-italic.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/500-italic.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/cormorant-garamond/700.css";
+import "@fontsource/cormorant-garamond/latin-300.css";
+import "@fontsource/cormorant-garamond/latin-300-italic.css";
+import "@fontsource/cormorant-garamond/latin-ext-300.css";
+import "@fontsource/cormorant-garamond/latin-ext-300-italic.css";
+import "@fontsource/cormorant-garamond/latin-400.css";
+import "@fontsource/cormorant-garamond/latin-400-italic.css";
+import "@fontsource/cormorant-garamond/latin-500.css";
+import "@fontsource/cormorant-garamond/latin-500-italic.css";
+import "@fontsource/cormorant-garamond/latin-600.css";
+import "@fontsource/cormorant-garamond/latin-700.css";
 
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
 
 import "./index.css";
 import { config } from "./portfolio.config";

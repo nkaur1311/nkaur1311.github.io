@@ -11,6 +11,8 @@ function Avatar() {
         src={config.avatarUrl}
         alt={config.name}
         className="w-28 h-28 rounded-2xl object-cover ring-2 ring-primary/30"
+        fetchPriority="high"
+        loading="eager"
         data-testid="img-avatar"
       />
     );
@@ -107,17 +109,17 @@ export function Hero() {
         className="relative z-10 max-w-3xl w-full text-center flex flex-col items-center gap-6"
       >
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.5 }}
         >
           <Avatar />
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.5, delay: 0.08 }}
           className="flex flex-col items-center gap-3"
         >
           {config.openToWork && (
