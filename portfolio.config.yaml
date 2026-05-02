@@ -63,7 +63,7 @@ contactFormEndpoint: ""  # Optional — paste a Formspree URL (https://formspree
 # Set show: false to hide any section from your portfolio
 sections:
   - { id: about,          show: true  }
-  - { id: stats,          show: true  }
+  - { id: stats,          show: false }  # Stats already appear as cards in the About section above — enable this only if you want a dedicated full-width stats section
   - { id: skills,         show: true  }
   - { id: languages,      show: true  }
   - { id: experience,     show: true  }

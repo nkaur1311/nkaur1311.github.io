@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Tag, ArrowLeft } from "lucide-react";
-import { getPost } from "@/lib/blog";
+import { getPost, allPosts } from "@/lib/blog";
 
 function formatDate(iso: string): string {
   if (!iso) return "";
@@ -17,6 +17,18 @@ interface BlogPostPageProps {
 
 export function BlogPostPage({ slug }: BlogPostPageProps) {
   const post = useMemo(() => getPost(slug), [slug]);
+
+  const related = useMemo(() => {
+    if (!post || post.tags.length === 0) return [];
+    return allPosts
+      .filter((p) => p.slug !== post.slug && p.tags.some((t) => post.tags.includes(t)))
+      .sort((a, b) => {
+        const aScore = a.tags.filter((t) => post.tags.includes(t)).length;
+        const bScore = b.tags.filter((t) => post.tags.includes(t)).length;
+        return bScore !== aScore ? bScore - aScore : b.date.localeCompare(a.date);
+      })
+      .slice(0, 3);
+  }, [post]);
 
   if (!post) {
     return (
@@ -124,12 +136,64 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
           </ReactMarkdown>
         </motion.div>
 
+        {/* Related posts */}
+        {related.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+            className="mt-16 pt-10 border-t border-border"
+          >
+            <p className="text-xs font-mono font-medium tracking-widest text-primary uppercase mb-5">
+              You might also enjoy
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {related.map((p) => (
+                <a
+                  key={p.slug}
+                  href={`#/blog/${p.slug}`}
+                  className="group block p-4 rounded-xl border border-border hover:border-primary/30 hover:bg-secondary/30 transition-all"
+                >
+                  {p.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {p.tags.slice(0, 2).map((t) => (
+                        <span
+                          key={t}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent text-accent-foreground text-[10px] font-medium"
+                        >
+                          <Tag size={8} />
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <p className="text-sm font-serif font-medium text-foreground group-hover:text-primary transition-colors leading-snug mb-2 line-clamp-2">
+                    {p.title}
+                  </p>
+                  <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
+                    {p.date && (
+                      <span className="flex items-center gap-1">
+                        <Calendar size={10} />
+                        {new Date(p.date).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                      </span>
+                    )}
+                    <span className="flex items-center gap-1">
+                      <Clock size={10} />
+                      {p.readingTime} min
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
         {/* Footer nav */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 pt-8 border-t border-border flex items-center justify-between"
+          transition={{ delay: 0.5 }}
+          className="mt-10 pt-8 border-t border-border flex items-center justify-between"
         >
           <a
             href="#/blog"
