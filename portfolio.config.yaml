@@ -21,7 +21,7 @@ tagline: "I build thoughtful software that scales."
 email: "alex@example.com"
 phone: ""                    # Optional — e.g. "+1 (555) 000-1234". Shown in contact section and resume.
 location: "San Francisco, CA"
-avatarUrl: "https://images.dog.ceo/breeds/retriever-golden/n02099601_3004.jpg"  # Demo puppy — replace with your own photo URL
+avatarUrl: "https://api.dicebear.com/9.x/fun-emoji/svg?seed=GitVita&radius=12"  # Demo avatar — replace with your own photo URL (see instructions below)
 # How to add a profile photo (free, no extra account needed):
 #   1. Go to your GitHub repo → click "Add file" → "Upload files"
 #   2. Upload your photo (e.g. avatar.jpg) into a folder called "public/"

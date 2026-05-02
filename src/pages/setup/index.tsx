@@ -736,9 +736,58 @@ function StepDone() {
         <strong className="text-foreground">1–2 minutes</strong>. Once it's ready,
         visit your portfolio at:
       </p>
-      <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-secondary border border-border font-mono text-sm text-foreground mb-8">
+      <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-secondary border border-border font-mono text-sm text-foreground mb-6">
         https://<span className="text-primary">yourusername</span>.github.io
         <InlineCopy text="https://yourusername.github.io" />
+      </div>
+
+      {/* Build status checker */}
+      <div className="w-full max-w-lg mx-auto mb-10 rounded-2xl border border-border overflow-hidden text-left">
+        <div className="px-4 py-3 bg-secondary border-b border-border flex items-center gap-2">
+          <span className="text-sm font-medium text-foreground">Check your build status</span>
+          <span className="text-xs text-muted-foreground">— is it live yet?</span>
+        </div>
+        <div className="p-4 space-y-3">
+          {/* Step */}
+          <div className="flex items-start gap-3 text-xs">
+            <span className="w-5 h-5 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold flex items-center justify-center shrink-0 mt-0.5 text-[10px]">1</span>
+            <p className="text-muted-foreground">
+              Go to your repository on GitHub and click the{" "}
+              <strong className="text-foreground">Actions</strong> tab.
+            </p>
+          </div>
+          <div className="flex items-start gap-3 text-xs">
+            <span className="w-5 h-5 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold flex items-center justify-center shrink-0 mt-0.5 text-[10px]">2</span>
+            <div className="space-y-1.5">
+              <p className="text-muted-foreground">Look for a workflow run. The status dot tells you everything:</p>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#2ea44f] shrink-0" />
+                  <span className="text-foreground font-medium">Green</span>
+                  <span className="text-muted-foreground">— your portfolio is live! 🎉</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-yellow-400 shrink-0 animate-pulse" />
+                  <span className="text-foreground font-medium">Yellow</span>
+                  <span className="text-muted-foreground">— still building, check back in a minute</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-500 shrink-0" />
+                  <span className="text-foreground font-medium">Red</span>
+                  <span className="text-muted-foreground">— first-run fail (expected). Make a small edit to your config file and save — that re-triggers the build.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Badge snippet */}
+          <div className="pt-1">
+            <p className="text-[11px] text-muted-foreground mb-1.5">Optional: add this badge to your README so you always see the status at a glance</p>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary border border-border font-mono text-[10px] text-muted-foreground overflow-x-auto">
+              <span>![Deploy](https://github.com/<span className="text-primary">username</span>/<span className="text-primary">username</span>.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)</span>
+              <InlineCopy text="![Deploy](https://github.com/username/username.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <p className="text-sm font-medium text-foreground mb-6">What to do next</p>
