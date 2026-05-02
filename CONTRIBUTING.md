@@ -1,6 +1,6 @@
-# Contributing to GitVita
+# Contributing to GitVitae
 
-Thanks for wanting to help. GitVita is intentionally simple — the goal is that any developer
+Thanks for wanting to help. GitVitae is intentionally simple — the goal is that any developer
 can understand the whole codebase in an afternoon. Contributions that keep it simple are
 especially welcome.
 

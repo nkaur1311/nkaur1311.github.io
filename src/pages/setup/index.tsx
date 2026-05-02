@@ -281,7 +281,7 @@ function StepTemplate({ onNext }: { onNext: () => void }) {
           Copy the portfolio template
         </h2>
         <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
-          You're going to make your own personal copy of the GitVita template. There are two ways — pick whichever feels simpler.
+          You're going to make your own personal copy of the GitVitae template. There are two ways — pick whichever feels simpler.
         </p>
       </div>
 
@@ -299,7 +299,7 @@ function StepTemplate({ onNext }: { onNext: () => void }) {
         <div className="p-3.5 rounded-xl border border-border">
           <p className="text-xs font-semibold text-foreground mb-1">Fork</p>
           <p className="text-[11px] text-muted-foreground leading-relaxed">
-            Links your copy back to GitVita. You get GitHub's built-in <strong className="text-foreground">"Sync fork"</strong> button for one-click updates — handy if you're already comfortable with git.
+            Links your copy back to GitVitae. You get GitHub's built-in <strong className="text-foreground">"Sync fork"</strong> button for one-click updates — handy if you're already comfortable with git.
           </p>
         </div>
       </div>
@@ -317,7 +317,7 @@ function StepTemplate({ onNext }: { onNext: () => void }) {
             <div className="w-6 h-6 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
             <div>
               <p className="text-sm font-medium text-foreground mb-1">Open the template page</p>
-              <p className="text-xs text-muted-foreground">Click the button below. You'll land on the GitVita template page on GitHub.</p>
+              <p className="text-xs text-muted-foreground">Click the button below. You'll land on the GitVitae template page on GitHub.</p>
             </div>
           </div>
           <div className="flex gap-3">
@@ -578,7 +578,7 @@ function StepEdit({ onNext }: { onNext: () => void }) {
                 Change <span className="font-mono">siteMode</span> from{" "}
                 <span className="font-mono">"landing"</span> to{" "}
                 <span className="font-mono">"portfolio"</span> — otherwise you'll still see the
-                GitVita introduction page instead of your portfolio.
+                GitVitae introduction page instead of your portfolio.
               </p>
             </div>
             <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20">
@@ -763,7 +763,7 @@ function StepPages({ onNext }: { onNext: () => void }) {
 
 const CHANGELOG_REMOTE_URL =
   "https://raw.githubusercontent.com/git-vita/git-vita.github.io/main/CHANGELOG.md";
-const CACHE_KEY = "gitvita-changelog-v2";
+const CACHE_KEY = "gitvitae-changelog-v1";
 
 function WhatsNew() {
   const [open, setOpen]           = useState(false);
@@ -811,7 +811,7 @@ function WhatsNew() {
       >
         <span className="flex items-center gap-2 text-sm font-medium text-foreground">
           <Sparkles size={14} className="text-primary" />
-          {versionLine ? `What's new — ${versionLine}` : "What's new in GitVita"}
+          {versionLine ? `What's new — ${versionLine}` : "What's new in GitVitae"}
           {refreshing && <RefreshCw size={11} className="text-muted-foreground animate-spin" />}
         </span>
         <ChevronDown
@@ -998,7 +998,7 @@ function StepDone() {
         <div className="px-4 py-3 bg-secondary border-b border-border">
           <p className="text-sm font-medium text-foreground">Staying up to date</p>
           <p className="text-[11px] text-muted-foreground mt-0.5">
-            GitVita releases new features regularly. Here's how to pull them into your portfolio.
+            GitVitae releases new features regularly. Here's how to pull them into your portfolio.
           </p>
         </div>
         <div className="divide-y divide-border">
@@ -1011,8 +1011,8 @@ function StepDone() {
                 <span className="ml-1.5 text-[10px] font-normal text-muted-foreground">(works for both "Use template" and Fork)</span>
               </p>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
-                Your repository ships with a <strong className="text-foreground">Sync GitVita Template</strong> workflow.
-                Go to your repo → <strong className="text-foreground">Actions</strong> → <strong className="text-foreground">Sync GitVita Template</strong> → <strong className="text-foreground">Run workflow</strong> → type <code className="text-primary text-[10px] bg-secondary px-1 rounded font-mono">YES</code> → click the green button.
+                Your repository ships with a <strong className="text-foreground">Sync GitVitae Template</strong> workflow.
+                Go to your repo → <strong className="text-foreground">Actions</strong> → <strong className="text-foreground">Sync GitVitae Template</strong> → <strong className="text-foreground">Run workflow</strong> → type <code className="text-primary text-[10px] bg-secondary px-1 rounded font-mono">YES</code> → click the green button.
                 Your <code className="text-primary text-[10px] bg-secondary px-1 rounded font-mono">portfolio.config.yaml</code> is always preserved automatically.
               </p>
             </div>
@@ -1055,7 +1055,7 @@ function StepDone() {
               <p className="text-[11px] text-muted-foreground leading-relaxed">
                 On the{" "}
                 <a href="https://github.com/git-vita/git-vita.github.io" target="_blank" rel="noopener noreferrer"
-                  className="text-primary hover:underline underline-offset-2">GitVita repository</a>
+                  className="text-primary hover:underline underline-offset-2">GitVitae repository</a>
                 , click <strong className="text-foreground">Watch → Custom → Releases</strong>. GitHub emails you when a new version ships.
               </p>
             </div>

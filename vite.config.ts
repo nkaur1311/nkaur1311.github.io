@@ -104,9 +104,9 @@ function buildRssXml(rootDir: string): string {
 </rss>`;
 }
 
-function gitvitaRssPlugin(rootDir: string): Plugin {
+function gitvitaeRssPlugin(rootDir: string): Plugin {
   return {
-    name: "gitvita-rss",
+    name: "gitvitae-rss",
     generateBundle() {
       this.emitFile({ type: "asset", fileName: "rss.xml", source: buildRssXml(rootDir) });
     },
@@ -123,7 +123,7 @@ function gitvitaRssPlugin(rootDir: string): Plugin {
 
 function metaAndSchemaPlugin() {
   return {
-    name: "gitvita-meta-schema",
+    name: "gitvitae-meta-schema",
     transformIndexHtml(html: string) {
       const name     = portfolioConfig.name    ?? "Portfolio";
       const jobTitle = portfolioConfig.title   ?? "";
@@ -195,7 +195,7 @@ function preloadCriticalFontsPlugin(): Plugin {
   const queue: string[] = [];
 
   return {
-    name: "gitvita-preload-fonts",
+    name: "gitvitae-preload-fonts",
     generateBundle(_options, bundle) {
       for (const asset of Object.values(bundle)) {
         if (
@@ -232,7 +232,7 @@ export default defineConfig({
     yaml(),
     metaAndSchemaPlugin(),
     preloadCriticalFontsPlugin(),
-    gitvitaRssPlugin(path.resolve(import.meta.dirname)),
+    gitvitaeRssPlugin(path.resolve(import.meta.dirname)),
     ...(isReplit
       ? [
           (await import("@replit/vite-plugin-runtime-error-modal")).default(),

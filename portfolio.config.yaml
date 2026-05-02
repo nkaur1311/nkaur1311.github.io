@@ -1,5 +1,5 @@
 # ╔══════════════════════════════════════════════════════════════════════╗
-# ║              GitVita — Portfolio Configuration                       ║
+# ║              GitVitae — Portfolio Configuration                       ║
 # ║  This is the only file you need to edit.                            ║
 # ║  Run  pnpm check-config  to catch mistakes before deploying.        ║
 # ╚══════════════════════════════════════════════════════════════════════╝
@@ -7,14 +7,14 @@
 # ╔══════════════════════════════════════════════════════════════════════╗
 # ║  ⚠️  FIRST THING TO CHANGE                                          ║
 # ║                                                                      ║
-# ║  siteMode: "landing"  → shows the GitVita intro page (default)      ║
+# ║  siteMode: "landing"  → shows the GitVitae intro page (default)      ║
 # ║  siteMode: "portfolio" → shows YOUR portfolio                        ║
 # ║                                                                      ║
 # ║  Change it to "portfolio" once you have filled in your details.     ║
 # ╚══════════════════════════════════════════════════════════════════════╝
 siteMode: "landing"   # ← CHANGE THIS to "portfolio"
 siteUrl:  "https://yourusername.github.io"  # ← Your GitHub Pages URL (used for RSS & canonical links)
-showPoweredBy: false  # Set to true to show a small "Made with GitVita" badge in your footer (helps others discover GitVita)
+showPoweredBy: false  # Set to true to show a small "Made with GitVitae" badge in your footer (helps others discover GitVitae)
 
 # ── Identity ───────────────────────────────────────────── (required) ──
 name: "Alex Rivera"

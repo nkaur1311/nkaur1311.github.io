@@ -1,7 +1,7 @@
 {
   "name": "@workspace/portfolio",
   "version": "1.0.0",
-  "description": "GitVita — portfolio-as-code. Edit portfolio.config.yaml, push, done.",
+  "description": "GitVitae — portfolio-as-code. Edit portfolio.config.yaml, push, done.",
   "private": true,
   "type": "module",
   "scripts": {

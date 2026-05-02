@@ -81,7 +81,7 @@ const FEATURES = [
   {
     icon: Lock,
     title: "No ads. No fees. Ever.",
-    desc: "GitVita is open source and hosted by GitHub for free. Nothing to pay for, nothing to cancel.",
+    desc: "GitVitae is open source and hosted by GitHub for free. Nothing to pay for, nothing to cancel.",
   },
 ];
 
@@ -112,7 +112,7 @@ const BLOG_MOCK_POSTS = [
 const FAQS = [
   {
     q: "Do I need to know how to code?",
-    a: "Not at all. You fill in a plain text file — almost like filling in a form — with your name, job title, experience, and links. GitVita handles all the design and technical parts automatically.",
+    a: "Not at all. You fill in a plain text file — almost like filling in a form — with your name, job title, experience, and links. GitVitae handles all the design and technical parts automatically.",
   },
   {
     q: "Is it really completely free?",
@@ -298,7 +298,7 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="text-base font-semibold tracking-tight">
-            Git<span className="text-primary">Vita</span>
+            Git<span className="text-primary">Vitae</span>
           </span>
           <div className="flex items-center gap-3">
             <a
@@ -355,6 +355,15 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
             The portfolio you keep putting off —{" "}
             <em className="text-primary not-italic">done in 5 minutes.</em>
           </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.07 }}
+            className="text-[11px] text-muted-foreground/40 tracking-[0.2em] font-mono -mt-4 mb-6 uppercase"
+          >
+            git + curriculum vitae
+          </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -446,7 +455,7 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
             className="border-l-2 border-primary/30 pl-6 mb-16 max-w-xl mx-auto"
           >
             <p className="text-lg font-serif text-foreground/80 italic leading-relaxed">
-              "You have the skills. GitVita makes sure the world can see them."
+              "You have the skills. GitVitae makes sure the world can see them."
             </p>
           </motion.div>
 
@@ -464,11 +473,11 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
               {[
                 {
                   blocker: `"I'll build it properly when I have more time."`,
-                  answer:  "There's never more time. Five minutes is all GitVita takes.",
+                  answer:  "There's never more time. Five minutes is all GitVitae takes.",
                 },
                 {
                   blocker: `"I'd need to learn web design first."`,
-                  answer:  "You don't. Fill in a plain-text file. GitVita handles all the design.",
+                  answer:  "You don't. Fill in a plain-text file. GitVitae handles all the design.",
                 },
                 {
                   blocker: `"I don't know where to host it."`,
@@ -707,7 +716,7 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
         </div>
       </section>
 
-      {/* ── Viral loop — "Made with GitVita" ──────────────────────────────── */}
+      {/* ── Viral loop — "Made with GitVitae" ──────────────────────────────── */}
       <section className="py-20 px-6 border-y border-border">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -722,10 +731,10 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
                 Spread the word
               </p>
               <h2 className="text-2xl font-serif font-medium text-foreground mb-4">
-                Add a badge. Help other developers discover GitVita.
+                Add a badge. Help other developers discover GitVitae.
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                Add one optional line to your settings file and a small "Made with GitVita" 
+                Add one optional line to your settings file and a small "Made with GitVitae" 
                 badge appears in your portfolio footer. No obligations — just a nice way 
                 to help other developers find a free tool they might love.
               </p>
@@ -762,7 +771,7 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground border border-border rounded-full px-3 py-1 bg-background">
                   <Link2 size={10} />
-                  Made with GitVita
+                  Made with GitVitae
                 </span>
               </div>
             </div>
@@ -786,7 +795,7 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
             Not convinced? See the real thing.
           </h2>
           <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-            The demo portfolio was built entirely with GitVita — the same template you'll get for free. 
+            The demo portfolio was built entirely with GitVitae — the same template you'll get for free. 
             Browse the blog, download the resume, switch to dark mode.
           </p>
           <a

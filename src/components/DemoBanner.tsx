@@ -34,10 +34,10 @@ export function DemoBanner({ onDismiss }: DemoBannerProps) {
           <GitFork size={12} className="shrink-0 opacity-70" />
 
           <span className="opacity-80 hidden sm:inline">
-            Live demo of <span className="font-semibold text-white">GitVita</span>
+            Live demo of <span className="font-semibold text-white">GitVitae</span>
             {" "}— a free, open-source portfolio template.
           </span>
-          <span className="opacity-80 sm:hidden font-semibold text-white">GitVita demo</span>
+          <span className="opacity-80 sm:hidden font-semibold text-white">GitVitae demo</span>
 
           <a
             href="https://github.com/git-vita/git-vita.github.io"

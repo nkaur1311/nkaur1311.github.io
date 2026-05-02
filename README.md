@@ -1,4 +1,4 @@
-# GitVita
+# GitVitae
 
 A free, open-source portfolio template for developers and job seekers. Edit one YAML file, push to GitHub, get a live portfolio — no account needed, no hosting fees, no framework knowledge required.
 
@@ -131,7 +131,7 @@ pnpm dev            # preview at http://localhost:3000
 
 ## Getting updates
 
-**Stay notified:** click **Watch → Custom → Releases only** on the [GitVita repo](https://github.com/git-vita/git-vita.github.io) and GitHub will email you whenever a new version ships.
+**Stay notified:** click **Watch → Custom → Releases only** on the [GitVitae repo](https://github.com/git-vita/git-vita.github.io) and GitHub will email you whenever a new version ships.
 
 When you're ready to pull an update into your portfolio, run:
 
@@ -139,9 +139,9 @@ When you're ready to pull an update into your portfolio, run:
 pnpm upgrade-template
 ```
 
-That's it. The script adds GitVita as an upstream remote (once), fetches the latest code, and merges it — without touching your `portfolio.config.yaml`. Follow it with `pnpm install && git push` to deploy the update.
+That's it. The script adds GitVitae as an upstream remote (once), fetches the latest code, and merges it — without touching your `portfolio.config.yaml`. Follow it with `pnpm install && git push` to deploy the update.
 
-Conflicts are extremely rare. They only occur if GitVita renames a field in `portfolio.config.yaml` that you've already filled in. The script will tell you exactly what to do if that happens.
+Conflicts are extremely rare. They only occur if GitVitae renames a field in `portfolio.config.yaml` that you've already filled in. The script will tell you exactly what to do if that happens.
 
 ---
 
@@ -149,7 +149,7 @@ Conflicts are extremely rare. They only occur if GitVita renames a field in `por
 
 **Do I need to know React or JavaScript?** No. You only edit `portfolio.config.yaml`.
 
-**Is this free?** Yes. GitHub Pages is free for public repos. GitVita is MIT licensed.
+**Is this free?** Yes. GitHub Pages is free for public repos. GitVitae is MIT licensed.
 
 **Can I make my repo private?** GitHub Pages requires a paid plan for private repos.
 
@@ -161,4 +161,4 @@ React · Vite · TypeScript · Tailwind CSS · Framer Motion
 
 ---
 
-*Built with [GitVita](https://github.com/git-vita/git-vita.github.io) — MIT License*
+*Built with [GitVitae](https://github.com/git-vita/git-vita.github.io) — MIT License*

@@ -271,7 +271,7 @@ export function Contact() {
               Built with{" "}
               <a href="https://github.com/git-vita" target="_blank" rel="noopener noreferrer"
                 className="text-primary hover:underline underline-offset-2">
-                GitVita
+                GitVitae
               </a>{" "}
               &mdash; fork and make it yours.
             </p>

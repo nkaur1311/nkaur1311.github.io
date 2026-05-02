@@ -133,7 +133,7 @@ export function PortfolioPage({ theme, onToggleTheme, topOffset }: PortfolioPage
             className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
           >
             <Link2 size={10} />
-            Made with GitVita
+            Made with GitVitae
           </a>
         </footer>
       )}

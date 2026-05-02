@@ -5,7 +5,7 @@ import bundledChangelog from "../../CHANGELOG.md?raw";
 
 const CHANGELOG_URL =
   "https://raw.githubusercontent.com/git-vita/git-vita.github.io/main/CHANGELOG.md";
-const CACHE_KEY = "gitvita-changelog-v2";
+const CACHE_KEY = "gitvitae-changelog-v1";
 
 interface Props {
   open: boolean;
@@ -147,7 +147,7 @@ export function ChangelogModal({ open, onClose }: Props) {
             <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
               <div className="flex items-center gap-2.5">
                 <Sparkles size={16} className="text-primary" />
-                <span className="text-sm font-semibold text-foreground">What's new in GitVita</span>
+                <span className="text-sm font-semibold text-foreground">What's new in GitVitae</span>
                 {refreshing && <RefreshCw size={11} className="text-muted-foreground animate-spin" />}
               </div>
               <div className="flex items-center gap-3">

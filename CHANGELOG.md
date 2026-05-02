@@ -1,4 +1,4 @@
-# GitVita Changelog
+# GitVitae Changelog
 
 All notable changes are listed here. Each version brings new features you can opt into by adding a line or two to your `portfolio.config.yaml`.
 
@@ -30,7 +30,7 @@ All notable changes are listed here. Each version brings new features you can op
 - **GitHub Activity section** — Set your `social.github` URL and your portfolio automatically shows a live "GitHub Activity" section: total stars across your public repos, follower count, repo count, and a top-language breakdown with animated progress bars. No extra config needed — it appears when your GitHub URL is set, disappears when it isn't.
 - **Pick any colour** — Add `primaryColor: "#e11d48"` to your config to use any hex colour you like. Just Google "colour picker", choose your favourite, and paste the code. No colour theory needed — the palette for light and dark mode is generated automatically.
 - **Dynamic favicon** — Your browser tab now shows your initials in your chosen colour, automatically generated from your name. No image files to create or upload.
-- **Auto-sync GitHub Action** — Your repo ships with a "Sync GitVita Template" workflow. Go to Actions → Sync GitVita Template → Run workflow → type YES. Pulls in the latest template updates while always preserving your `portfolio.config.yaml`.
+- **Auto-sync GitHub Action** — Your repo ships with a "Sync GitVitae Template" workflow. Go to Actions → Sync GitVitae Template → Run workflow → type YES. Pulls in the latest template updates while always preserving your `portfolio.config.yaml`.
 - **Changelog modal** — Click "What's new" at the bottom of your portfolio to see what features have been added since you set up your portfolio.
 
 ### Improved
@@ -49,7 +49,7 @@ All notable changes are listed here. Each version brings new features you can op
 
 ### Improved
 - **Active nav link** — Fixed scroll tracking so the highlighted nav pill always reflects the section you're actually reading.
-- **Landing page** — Redesigned narrative story section explaining the problem GitVita solves.
+- **Landing page** — Redesigned narrative story section explaining the problem GitVitae solves.
 
 ---
 
