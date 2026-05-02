@@ -65,7 +65,7 @@ function SectionWrapper({ id, children }: { id: string; children: React.ReactNod
     <div className="relative group/sec">
       {children}
       {/* Hover copy-link button — hidden on touch screens */}
-      <div className="absolute top-10 right-6 z-10 hidden sm:block opacity-0 group-hover/sec:opacity-100 transition-opacity duration-200 pointer-events-none group-hover/sec:pointer-events-auto">
+      <div className="no-print absolute top-10 right-6 z-10 hidden sm:block opacity-0 group-hover/sec:opacity-100 transition-opacity duration-200 pointer-events-none group-hover/sec:pointer-events-auto">
         <button
           onClick={handleCopy}
           className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-background/90 backdrop-blur border border-border text-[11px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/40 shadow-sm transition-colors"

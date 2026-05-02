@@ -623,3 +623,49 @@
   background: hsl(var(--secondary));
   font-weight: 600;
 }
+
+/* ── Print / PDF export ──────────────────────────────────────────────────── */
+@media print {
+  /* Restore scroll offset removed by fixed navbar */
+  body { padding-top: 0 !important; }
+
+  /* Hide all navigation, banners, and interactive chrome */
+  nav,
+  [data-testid="navbar"],
+  [data-demo-banner],
+  .no-print { display: none !important; }
+
+  /* Freeze all animations */
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+  }
+
+  /* Force white canvas and legible text */
+  :root {
+    --background: 0 0% 100% !important;
+    --foreground: 222 47% 8% !important;
+    --secondary: 220 14% 95% !important;
+    --border: 220 13% 83% !important;
+    --muted-foreground: 220 10% 38% !important;
+    --primary: 250 75% 48% !important;
+  }
+
+  body { background: #fff; color: #0d1424; }
+
+  /* Strip all shadows, blurs, and elevation */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Suppress href annotations added by some browsers */
+  a[href]::after { content: none !important; }
+
+  /* Sensible page breaks — avoid splitting small cards */
+  #experience, #projects, #education, #certifications { break-before: page; }
+  section > div, article { break-inside: avoid; }
+}

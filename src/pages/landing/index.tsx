@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight, Palette, Smartphone, FileText,
+  ArrowRight, Palette, Smartphone, Printer,
   Zap, Globe, Lock, ChevronDown, Sun, Moon,
   Github, Check, Rss, PenLine, BookOpen, Sparkles,
   Link2, LayoutTemplate,
@@ -49,9 +49,9 @@ const FEATURES = [
     desc: "Phones, tablets, laptops — your portfolio is perfectly laid out on every screen size.",
   },
   {
-    icon: FileText,
-    title: "Built-in resume page",
-    desc: "Print a polished, PDF-ready resume straight from your portfolio. No extra tools needed.",
+    icon: Printer,
+    title: "PDF export built in",
+    desc: "One click turns your full portfolio into a clean, recruiter-ready PDF — straight from the browser, no extra tools.",
   },
   {
     icon: Globe,
@@ -352,8 +352,8 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
             transition={{ duration: 0.55, delay: 0.05 }}
             className="text-4xl sm:text-5xl md:text-6xl font-serif font-medium text-foreground leading-tight mb-6"
           >
-            Your portfolio website,{" "}
-            <em className="text-primary not-italic">ready in 5 minutes.</em>
+            The portfolio you keep putting off —{" "}
+            <em className="text-primary not-italic">done in 5 minutes.</em>
           </motion.h1>
 
           <motion.p
@@ -362,8 +362,8 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto"
           >
-            Fork the template. Fill in one YAML file. Get a beautiful, professional portfolio
-            with a blog, resume page, and RSS feed — hosted free on GitHub Pages, forever.
+            Fork the template. Fill in your name, experience, and links. Go live — free on
+            GitHub Pages, forever. No code, no subscriptions, no excuses.
           </motion.p>
 
           <motion.div
@@ -376,7 +376,7 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
               href={SETUP_URL}
               className="flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
             >
-              Get my free portfolio
+              Build mine — it's free
               <ArrowRight size={15} />
             </a>
             <a
@@ -408,8 +408,73 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
         </div>
       </section>
 
+      {/* ── Pain point ───────────────────────────────────────────────────── */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="text-center mb-12">
+              <p className="text-xs font-mono font-medium tracking-widest text-primary uppercase mb-4">
+                Sound familiar?
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-serif font-medium text-foreground">
+                Most portfolios never get built.
+              </h2>
+              <p className="mt-4 text-sm text-muted-foreground max-w-lg mx-auto leading-relaxed">
+                Not because people don't care — because it always feels too technical,
+                too time-consuming, or just never quite the right moment.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+              {[
+                {
+                  blocker: `"I'll build it properly when I have more time."`,
+                  answer:  "There's never more time. Five minutes is all this takes.",
+                },
+                {
+                  blocker: `"I'd need to learn web design first."`,
+                  answer:  "You don't. Fill in a text file. GitVita handles all the design.",
+                },
+                {
+                  blocker: `"I don't know where to host it."`,
+                  answer:  "GitHub Pages. Already set up in the template. Free forever.",
+                },
+                {
+                  blocker: `"I started one once, but it got complicated."`,
+                  answer:  "One file. No frameworks, no deployments, no complications.",
+                },
+              ].map(({ blocker, answer }) => (
+                <div key={blocker} className="p-5 rounded-2xl border border-border bg-secondary/30 hover:border-primary/30 transition-colors">
+                  <p className="text-sm text-muted-foreground/60 line-through mb-2.5 leading-snug">{blocker}</p>
+                  <p className="text-sm font-medium text-foreground flex items-start gap-2 leading-snug">
+                    <Check size={14} className="text-primary flex-shrink-0 mt-0.5" />
+                    {answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <a
+                href={SETUP_URL}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+              >
+                This time, actually do it
+                <ArrowRight size={15} />
+              </a>
+              <p className="mt-3 text-xs text-muted-foreground">Free forever · No code · Takes 5 minutes</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── How it works ─────────────────────────────────────────────────── */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-secondary/20">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -738,11 +803,11 @@ export function LandingPage({ theme, onToggleTheme }: LandingPageProps) {
           className="max-w-2xl mx-auto text-center"
         >
           <h2 className="text-4xl sm:text-5xl font-serif font-medium text-foreground mb-6 leading-tight">
-            Your work deserves to be seen.
+            Your next opportunity might Google you first.
           </h2>
           <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-lg mx-auto">
-            A portfolio, a blog, a resume page, and an RSS feed — all from one file, 
-            hosted free on GitHub Pages.
+            Make sure what they find is worth stopping for. A complete portfolio, live in
+            5 minutes, free forever — no excuses left.
           </p>
           <a
             href={SETUP_URL}
