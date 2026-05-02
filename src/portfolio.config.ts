@@ -6,6 +6,8 @@
  * ============================================================
  */
 
+import type { ColorPreset, PresetPalette } from "@/lib/themes";
+
 export const config = {
   // ── Personal Info ──────────────────────────────────────────
   name: "Alex Rivera",
@@ -120,10 +122,44 @@ export const config = {
   ],
 
   // ── Availability ───────────────────────────────────────────
-  // Show/hide the "Open to work" badge in the hero
   openToWork: true,
 
   // ── Theme ──────────────────────────────────────────────────
-  // "system" | "light" | "dark" — default color scheme
+  // Light/dark mode default: "system" | "light" | "dark"
   defaultTheme: "system" as "system" | "light" | "dark",
+
+  // ── Color Preset ───────────────────────────────────────────
+  // Choose an accent color palette that matches your personality.
+  //
+  // Built-in presets:
+  //   "indigo"   — electric indigo/violet (default)
+  //   "emerald"  — deep forest green
+  //   "rose"     — sophisticated rose/crimson
+  //   "amber"    — warm amber / gold
+  //   "ocean"    — deep teal / cyan
+  //   "slate"    — minimal monochrome
+  //   "custom"   — define your own colors below
+  //
+  colorPreset: "indigo" as ColorPreset,
+
+  // Only used when colorPreset is "custom".
+  // Provide HSL values WITHOUT the hsl() wrapper, e.g. "250 84% 60%"
+  customColors: {
+    light: {
+      primary:     "250 84% 60%",
+      primaryFg:   "0 0% 100%",
+      accent:      "250 84% 96%",
+      accentFg:    "250 84% 40%",
+      ring:        "250 84% 60%",
+      gradientEnd: "250 84% 80%",
+    },
+    dark: {
+      primary:     "250 84% 67%",
+      primaryFg:   "0 0% 100%",
+      accent:      "250 50% 22%",
+      accentFg:    "250 84% 80%",
+      ring:        "250 84% 67%",
+      gradientEnd: "250 100% 85%",
+    },
+  } satisfies PresetPalette,
 };

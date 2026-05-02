@@ -279,7 +279,7 @@
     box-shadow: 0 0 40px hsl(var(--primary) / 0.15);
   }
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(250 84% 80%));
+    background: linear-gradient(135deg, hsl(var(--primary)), var(--gradient-text-end, hsl(250 84% 80%)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -293,5 +293,211 @@
   }
   .noise-bg {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+}
+
+/* ============================================================
+   PRINT / PDF MODE
+   Ctrl+P renders a clean, document-quality single-column layout.
+   All decoration, animations, and interactive elements are hidden.
+   ============================================================ */
+@media print {
+  /* Reset */
+  *,
+  *::before,
+  *::after {
+    cursor: auto !important;
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+    scroll-behavior: auto !important;
+  }
+
+  /* Hide interactive / decorative chrome */
+  nav,
+  [data-testid="navbar"],
+  [data-testid="button-scroll-down"],
+  [data-testid="button-share-resume"],
+  [data-testid="button-share-resume-footer"],
+  [data-testid="button-toggle-theme"],
+  [data-testid="button-mobile-menu"],
+  [data-testid="button-download-resume-nav"],
+  [data-testid="div-avatar-initials"] + span,
+  .animate-bounce,
+  .animate-pulse,
+  .blur-3xl,
+  footer [data-testid="button-share-resume-footer"] {
+    display: none !important;
+  }
+
+  /* Print header — name + contact line */
+  body::before {
+    content: "";
+    display: block;
+  }
+
+  /* Hero: strip parallax, center to top */
+  #hero {
+    min-height: unset !important;
+    padding: 1.5rem 0 1rem !important;
+    page-break-after: avoid;
+    background: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  #hero > div {
+    text-align: left !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+  }
+
+  /* Decorative backgrounds */
+  #hero [style*="background-image"],
+  #hero [style*="radial-gradient"] {
+    display: none !important;
+  }
+
+  /* Name */
+  #hero h1 {
+    font-size: 2.8rem !important;
+    line-height: 1.1 !important;
+    color: #111 !important;
+  }
+
+  /* Title */
+  #hero p.text-primary {
+    font-size: 0.75rem !important;
+    color: #555 !important;
+    letter-spacing: 0.18em;
+  }
+
+  /* Tagline */
+  #hero p.text-muted-foreground {
+    font-size: 0.9rem !important;
+    color: #444 !important;
+  }
+
+  /* Sections */
+  section {
+    padding: 1.4rem 0 !important;
+    page-break-inside: avoid;
+    background: none !important;
+  }
+
+  section + section {
+    border-top: 1px solid #e0e0e0;
+  }
+
+  /* Section labels */
+  section p.uppercase,
+  footer p.uppercase {
+    font-size: 0.6rem !important;
+    color: #888 !important;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.3rem !important;
+  }
+
+  /* Section headings */
+  h2.section-heading {
+    font-size: 1.5rem !important;
+    color: #111 !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  /* Cards — flatten */
+  .rounded-2xl,
+  .rounded-xl {
+    border-radius: 4px !important;
+  }
+
+  .card-hover {
+    transform: none !important;
+  }
+
+  .bg-card,
+  .bg-secondary {
+    background: #f9f9f9 !important;
+  }
+
+  .border {
+    border-color: #ddd !important;
+  }
+
+  /* Skills pills */
+  span.px-3 {
+    border: 1px solid #ccc !important;
+    background: #f4f4f4 !important;
+    color: #333 !important;
+  }
+
+  /* Experience timeline — hide the dot/line decoration */
+  .absolute.left-4,
+  .absolute.left-0.md\:left-8 {
+    display: none !important;
+  }
+
+  [class*="sm:pl-24"] {
+    padding-left: 0 !important;
+  }
+
+  /* Experience role / company */
+  .font-serif.font-light.text-2xl {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #111 !important;
+  }
+
+  /* Project cards */
+  .grid.md\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Footer — keep contact info, strip the rest */
+  footer#contact {
+    page-break-before: avoid;
+    border-top: 1px solid #e0e0e0 !important;
+    padding: 1rem 0 0.5rem !important;
+    background: none !important;
+  }
+
+  footer p.text-xs.text-muted-foreground {
+    color: #999 !important;
+    font-size: 0.6rem !important;
+  }
+
+  /* Primary buttons — show as links */
+  a.bg-primary,
+  .bg-primary {
+    background: none !important;
+    color: #111 !important;
+    border: 1px solid #bbb !important;
+    padding: 0.2rem 0.6rem !important;
+  }
+
+  /* Stat cards in About */
+  .gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: #333 !important;
+    color: #333 !important;
+  }
+
+  /* Page layout */
+  @page {
+    margin: 1.6cm 1.8cm;
+    size: A4 portrait;
   }
 }
