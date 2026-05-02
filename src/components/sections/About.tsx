@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mail, Globe } from "lucide-react";
 import { config } from "@/portfolio.config";
 import { fadeUpVariants } from "@/lib/animation";
@@ -95,7 +95,6 @@ function StatCard({
 
 export function About() {
   const ref = useRef<HTMLElement>(null);
-  useScroll({ target: ref, offset: ["start end", "end start"] });
 
   const hasLanguages = config.languages && config.languages.length > 0;
 
