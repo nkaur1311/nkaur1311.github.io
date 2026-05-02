@@ -9,6 +9,7 @@ name: "Alex Rivera"
 title: "Full-Stack Engineer"
 tagline: "I build thoughtful software that scales."
 email: "alex@example.com"
+phone: ""                    # Optional — e.g. "+1 (555) 000-1234". Shown in contact section and resume.
 location: "San Francisco, CA"
 avatarUrl: ""
 # How to add a profile photo (free, no extra account needed):

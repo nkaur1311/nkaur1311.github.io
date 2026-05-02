@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Download, Share2 } from "lucide-react";
+import { Mail, Phone, Download, Share2 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { config } from "@/portfolio.config";
 import { ShareModal } from "@/components/ShareModal";
@@ -36,19 +36,33 @@ export function Contact() {
             </p>
           </motion.div>
 
-          <motion.a
+          <motion.div
             variants={fadeUp}
             custom={1}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            href={`mailto:${config.email}`}
-            className="flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-medium text-sm tracking-wide hover:opacity-90 transition-opacity"
-            data-testid="link-contact-email"
+            className="flex flex-col sm:flex-row items-center gap-3"
           >
-            <Mail size={16} />
-            {config.email}
-          </motion.a>
+            <a
+              href={`mailto:${config.email}`}
+              className="flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-medium text-sm tracking-wide hover:opacity-90 transition-opacity"
+              data-testid="link-contact-email"
+            >
+              <Mail size={16} />
+              {config.email}
+            </a>
+            {config.phone && (
+              <a
+                href={`tel:${config.phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-2.5 px-8 py-4 rounded-2xl border border-border text-foreground font-medium text-sm tracking-wide hover:bg-secondary hover:border-primary/40 transition-all"
+                data-testid="link-contact-phone"
+              >
+                <Phone size={16} />
+                {config.phone}
+              </a>
+            )}
+          </motion.div>
 
           <motion.div
             variants={fadeUp}

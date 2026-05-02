@@ -57,11 +57,12 @@ function buildProfiles(social = {}) {
 const resume = {
   $schema: "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   basics: {
-    name:     config.name     ?? "",
-    label:    config.title    ?? "",
+    name:     config.name      ?? "",
+    label:    config.title     ?? "",
     image:    config.avatarUrl ?? "",
-    email:    config.email    ?? "",
-    summary:  config.about    ?? "",
+    email:    config.email     ?? "",
+    phone:    config.phone     ?? "",
+    summary:  config.about     ?? "",
     location: parseLocation(config.location),
     profiles: buildProfiles(config.social),
   },
@@ -123,11 +124,12 @@ const languagesBlock = (config.languages ?? [])
 
 const locationStr = config.location ? `${config.location} · ` : "";
 const emailStr    = config.email    ? `${config.email} · `    : "";
+const phoneStr    = config.phone    ? `${config.phone} · `    : "";
 
 const markdown = `# ${config.name}
 **${config.title}**
 
-${locationStr}${emailStr}${socialLinks}
+${locationStr}${phoneStr}${emailStr}${socialLinks}
 
 ${config.openToWork ? "> **Open to new opportunities**\n\n" : ""}## Summary
 

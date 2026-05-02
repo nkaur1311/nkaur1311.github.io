@@ -107,6 +107,13 @@ checkRequired("name",      cfg.name,    "Your full name shown at the top of the 
 checkRequired("title",     cfg.title,   'Your job title / headline e.g. "Full-Stack Engineer"');
 checkRequired("tagline",   cfg.tagline, "One-line pitch shown below your name in the hero");
 checkEmail("email", cfg.email);
+if (cfg.phone) {
+  if (!/^[+\d\s()./-]{7,20}$/.test(cfg.phone)) {
+    fail("phone", `"${cfg.phone}" doesn't look like a valid phone number`);
+  } else {
+    pass("phone", cfg.phone);
+  }
+}
 if (cfg.location) pass("location", cfg.location);
 else warn("location", "Not set — location won't be displayed");
 checkBoolean("openToWork", cfg.openToWork);

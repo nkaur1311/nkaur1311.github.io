@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Download, MapPin, ArrowDown } from "lucide-react";
+import { Download, MapPin, Phone, ArrowDown } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { config } from "@/portfolio.config";
@@ -141,10 +141,26 @@ export function Hero() {
 
           {config.tagline && <TypewriterText text={config.tagline} />}
 
-          {config.location && (
-            <p className="flex items-center gap-1.5 text-xs text-muted-foreground tracking-wider uppercase font-medium mt-1">
-              <MapPin size={12} />
-              {config.location}
+          {(config.location || config.phone) && (
+            <p className="flex items-center gap-3 text-xs text-muted-foreground tracking-wider uppercase font-medium mt-1 flex-wrap justify-center">
+              {config.location && (
+                <span className="flex items-center gap-1.5">
+                  <MapPin size={12} />
+                  {config.location}
+                </span>
+              )}
+              {config.location && config.phone && (
+                <span className="opacity-30">·</span>
+              )}
+              {config.phone && (
+                <a
+                  href={`tel:${config.phone.replace(/\s/g, "")}`}
+                  className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+                >
+                  <Phone size={12} />
+                  {config.phone}
+                </a>
+              )}
             </p>
           )}
         </motion.div>

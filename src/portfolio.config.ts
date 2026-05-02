@@ -15,6 +15,7 @@ const rawConfig = rawConfigYaml as unknown as {
   title:          string;
   tagline:        string;
   email:          string;
+  phone?:         string;
   location:       string;
   avatarUrl:      string;
   resumeUrl:      string;
