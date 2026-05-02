@@ -131,14 +131,21 @@ pnpm dev            # preview at http://localhost:3000
 
 ## Getting updates
 
-When GitVita releases new features, merge them without losing your config:
+**Stay notified:** click **Watch → Custom → Releases only** on the [GitVita repo](https://github.com/git-vita/git-vita.github.io) and GitHub will email you whenever a new version ships.
+
+When you're ready to pull an update into your portfolio:
 
 ```bash
+# One-time setup — add GitVita as an upstream remote
 git remote add git-vita https://github.com/git-vita/git-vita.github.io
+
+# Pull updates (run this whenever you want to upgrade)
 git fetch git-vita
 git merge git-vita/main --allow-unrelated-histories
-# conflicts will only be in files you've changed
+git push
 ```
+
+Conflicts are extremely rare — they only occur if GitVita renames a field in `portfolio.config.yaml` that you've already filled in. In that case Git will mark the conflict in the file and you just keep your values.
 
 ---
 
