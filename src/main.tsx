@@ -34,7 +34,7 @@ import "./index.css";
 import { config } from "./portfolio.config";
 
 // ── Dynamic favicon from name initials ────────────────────────────────────────
-function setInitialsFavicon(name: string, color = config.primaryColor || "#6366f1") {
+function setInitialsFavicon(name: string, color: string) {
   const words    = name.trim().split(/\s+/).filter(Boolean);
   const initials = words.length >= 2
     ? `${words[0][0]}${words[words.length - 1][0]}`.toUpperCase()
