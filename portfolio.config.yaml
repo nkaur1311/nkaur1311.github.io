@@ -23,7 +23,7 @@ tagline: "I build thoughtful software that scales."
 email: "navneet.kaur@example.com"
 phone: ""                    # Optional — e.g. "+1 (555) 000-1234". Shown in contact section and resume.
 location: "GTA, Ontario"
-avatarUrl: "https://api.dicebear.com/9.x/fun-emoji/svg?seed=Alex&mouth[]=wideSmile&radius=12"  # Demo avatar — replace with your own photo URL (see instructions below)
+avatarUrl: "https://media.licdn.com/dms/image/v2/D5603AQH4K-gDehu2oA/profile-displayphoto-crop_800_800/B56ZtC.suOK4AI-/0/1766355291981?e=1779321600&v=beta&t=p84bQ9XSP7rqMClk0f09cFNaYYOQc8gzbRUKiKqCwqQ"  # Demo avatar — replace with your own photo URL (see instructions below)
 # How to add a profile photo (free, no extra account needed):
 #   1. Go to your GitHub repo → click "Add file" → "Upload files"
 #   2. Upload your photo (e.g. avatar.jpg) into a folder called "public/"
@@ -82,7 +82,7 @@ sections:
 # ── Social links ───────────────────────────── (leave blank to hide) ───
 social:
   github:   "https://github.com/nkaur1311"
-  linkedin: "https://linkedin.com/in/yourusername"
+  linkedin: "https://linkedin.com/in/navneet-kaur-00a619b4"
   twitter:  ""
   website:  ""
 
